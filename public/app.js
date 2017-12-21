@@ -4,6 +4,18 @@ $.getJSON("/articles", function(data){
 	}
 });
 
+$(document).on("click", "#scrape", function(event){
+	event.preventDefault();
+	console.log("scrapingggg");
+
+	$.ajax({
+		method: "GET",
+		url: "/scrape"
+	}).done(function(data){
+		alert("You have scraped some cool stuff!")
+	});
+});
+
 $(document).on("click", "p", function(){
 	$("#notes").empty();
 

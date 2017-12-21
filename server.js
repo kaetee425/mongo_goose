@@ -22,14 +22,14 @@ mongoose.connect("mongodb://localhost/goGoose", {
 });
 
 app.get("/scape", function(req, res){
-	axios.get("http://www.echojs.com/").then(function(response){
+	axios.get("http://www.cracked.com/humor-movies-tv.html").then(function(response){
 		var $ = cheerio.load(response.data);
 
-		$("article h2").each(function(i, element){
+		$("div.content-card").each(function(i, element){
 			var result = {};
 
-			result.title = $(this).children("a").text();
-			result.link = $(this).children("a").attr('href');
+			result.title = $(this).children("div.content-card-content a").text();
+			result.link = $(this).children("div.content-card-content a").attr('href');
 
 			db.Article.create(result).then(function(dbArticle){
 				res.send("Scrape Complete");
